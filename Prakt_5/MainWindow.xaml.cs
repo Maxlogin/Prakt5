@@ -24,5 +24,54 @@ namespace Prakt_5
         {
             InitializeComponent();
         }
+        private void BtnCancelClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void BtnOKClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int k = -1;
+                int n = Convert.ToInt32(ListBoxData.Items[0]);
+                for (int i = 0; i <= n; i++)
+                {
+                    int m = Convert.ToInt32(ListBoxData.Items[i]);
+                    if (m % 4 == 0 && m % 7 != 0)
+                    {
+                       k++;
+                    }
+                }
+                TextBlockAnswer.Text = $"Ответ:{k}";
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Введены не корректные данные");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(TbNumber.Text))
+            {
+                return;
+            }
+            try
+            {
+                int xa = Convert.ToInt32(TbNumber.Text);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Введены не корректные данные");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            ListBoxData.Items.Add(TbNumber.Text);
+        }
     }
 }
